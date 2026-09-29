@@ -127,7 +127,7 @@
             text-align: right;
         }
 
-        /* شبكة الصور - ارتفاع ثابت لكل صف */
+        /* شبكة الصور */
         .images-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
@@ -416,8 +416,9 @@
         }
 
         /* =========================================================
-           ✅ إعدادات الطباعة فقط - مُصحّحة لملء الفراغ
+           ✅ إعدادات الطباعة فقط
            ⚠️ العرض العادي للصفحة لم يتغير نهائياً
+           ✅ الحل الوحيد المضاف: flex: 1 على .images-grid لملء الفراغ
            ========================================================= */
         @media print {
             /* ===== إعدادات عامة للصفحة ===== */
@@ -466,44 +467,45 @@
                 margin-bottom: 5px !important;
             }
 
-            /* ✅ مربع الوصف - ارتفاع أكبر لاستغلال المساحة */
+            /* ✅ مربع الوصف كما هو */
             .description-box {
                 margin-top: 0 !important;
-                min-height: 120px !important;
-                max-height: 130px !important;
-                margin-bottom: 10px !important;
-                padding: 10px !important;
+                min-height: 100px !important;
+                max-height: 110px !important;
+                margin-bottom: 8px !important;
+                padding: 8px !important;
             }
 
             .description-input {
-                min-height: 75px !important;
-                max-height: 90px !important;
-                font-size: 12px !important;
-                line-height: 1.5 !important;
+                min-height: 60px !important;
+                max-height: 75px !important;
+                font-size: 11px !important;
+                line-height: 1.4 !important;
                 overflow: hidden !important;
                 resize: none !important;
             }
 
-            /* ✅ الصور - ارتفاع أكبر لملء الفراغ */
+            /* ✅ شبكة الصور - تمتد لملء الفراغ تلقائياً */
             .images-grid {
-                grid-template-rows: 190px 190px !important;
-                gap: 10px !important;
-                margin-bottom: 10px !important;
+                grid-template-rows: 170px 170px !important;
+                gap: 8px !important;
+                margin-bottom: 8px !important;
                 overflow: hidden !important;
+                flex: 1 1 auto !important;   /* ⭐ الحل الوحيد: يمتد ليملأ الفراغ */
             }
 
             .image-placeholder {
                 overflow: hidden !important;
-                max-height: 190px !important;
-                height: 190px !important;
+                max-height: 170px !important;
+                height: 170px !important;
                 -webkit-clip-path: inset(0 0 0 0 round 12px) !important;
                 clip-path: inset(0 0 0 0 round 12px) !important;
                 position: relative !important;
             }
 
             .image-placeholder img {
-                max-height: 190px !important;
-                height: 190px !important;
+                max-height: 170px !important;
+                height: 170px !important;
                 width: 100% !important;
                 object-fit: cover !important;
                 object-position: center !important;
@@ -517,13 +519,6 @@
 
             .image-placeholder:not(.has-image) img {
                 display: none !important;
-            }
-
-            /* ✅ التذييل - بدون فراغ علوي (الحل الجذري) */
-            .footer {
-                margin-top: 20px !important;
-                padding-top: 0 !important;
-                gap: 8px !important;
             }
 
             /* ===== إخفاء عناصر التحكم ===== */
