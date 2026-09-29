@@ -127,7 +127,7 @@
             text-align: right;
         }
 
-        /* شبكة الصور */
+        /* شبكة الصور - ارتفاع ثابت لكل صف */
         .images-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
@@ -416,9 +416,8 @@
         }
 
         /* =========================================================
-           ✅ إعدادات الطباعة فقط
+           ✅ إعدادات الطباعة فقط - مُصحّحة
            ⚠️ العرض العادي للصفحة لم يتغير نهائياً
-           ✅ الحل الوحيد المضاف: flex: 1 على .images-grid لملء الفراغ
            ========================================================= */
         @media print {
             /* ===== إعدادات عامة للصفحة ===== */
@@ -467,7 +466,7 @@
                 margin-bottom: 5px !important;
             }
 
-            /* ✅ مربع الوصف كما هو */
+            /* ✅ مربع الوصف مباشرة بعد العنوان */
             .description-box {
                 margin-top: 0 !important;
                 min-height: 100px !important;
@@ -485,13 +484,12 @@
                 resize: none !important;
             }
 
-            /* ✅ شبكة الصور - تمتد لملء الفراغ تلقائياً */
+            /* ✅ تصغير الصور - الحل الأساسي */
             .images-grid {
                 grid-template-rows: 170px 170px !important;
                 gap: 8px !important;
                 margin-bottom: 8px !important;
                 overflow: hidden !important;
-                flex: 1 1 auto !important;   /* ⭐ الحل الوحيد: يمتد ليملأ الفراغ */
             }
 
             .image-placeholder {
