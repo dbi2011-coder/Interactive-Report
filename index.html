@@ -52,12 +52,13 @@
         }
 
         /* ===== العنوان ===== */
+        /* ✅ مساحة كبيرة أعلى الصفحة للشعار */
         .header {
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            margin-top: 30px;
-            margin-bottom: 10px;
+            margin-top: 110px;
+            margin-bottom: 15px;
             width: 100%;
         }
 
@@ -100,7 +101,7 @@
             border-radius: 12px;
             padding: 10px;
             margin-bottom: 10px;
-            margin-top: 15px;
+            margin-top: 0;
             background-color: rgba(255,255,255,0.85);
             min-height: 120px;
             text-align: right;
@@ -136,7 +137,7 @@
         .images-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 200px 200px;
+            grid-template-rows: 190px 190px;
             gap: 10px;
             margin-bottom: 10px;
             width: 70%;
@@ -185,7 +186,7 @@
             display: none;
         }
 
-        /* ✅ input الملف يعمل على iPhone والأندرويد */
+        /* ✅ input الملف يعمل على iPhone */
         .image-placeholder input[type="file"] {
             position: absolute;
             top: 0;
@@ -443,8 +444,13 @@
                 width: 100%;
             }
 
+            /* ✅ مساحة أقل للشعار على الموبايل */
+            .header {
+                margin-top: 80px;
+            }
+
             .description-box {
-                margin-top: 20px;
+                margin-top: 0;
             }
 
             .images-grid {
@@ -508,10 +514,10 @@
                 flex-direction: column !important;
             }
 
-            /* تصغير العنوان */
+            /* ✅ مساحة كبيرة أعلى الصفحة للشعار */
             .header {
-                margin-top: 15px !important;
-                margin-bottom: 6px !important;
+                margin-top: 90px !important;
+                margin-bottom: 10px !important;
             }
 
             .title-row {
@@ -522,12 +528,12 @@
                 font-size: 14px !important;
             }
 
-            /* تصغير مربع الوصف */
+            /* ✅ تصغير مربع الوصف */
             .description-box {
-                margin-top: 8px !important;
-                min-height: 90px !important;
-                max-height: 100px !important;
-                margin-bottom: 6px !important;
+                margin-top: 0 !important;
+                min-height: 100px !important;
+                max-height: 110px !important;
+                margin-bottom: 8px !important;
                 padding: 8px !important;
             }
 
@@ -536,26 +542,26 @@
             }
 
             .description-input {
-                min-height: 60px !important;
-                max-height: 75px !important;
+                min-height: 65px !important;
+                max-height: 80px !important;
                 font-size: 11px !important;
                 line-height: 1.4 !important;
                 overflow: hidden !important;
                 resize: none !important;
             }
 
-            /* ✅ تصغير شبكة الصور لضمان الدخول في صفحة واحدة */
+            /* ✅ ارتفاع متوازن للصور */
             .images-grid {
-                grid-template-rows: 155px 155px !important;
-                gap: 7px !important;
-                margin-bottom: 6px !important;
+                grid-template-rows: 165px 165px !important;
+                gap: 8px !important;
+                margin-bottom: 8px !important;
                 overflow: hidden !important;
             }
 
             .image-placeholder {
                 overflow: hidden !important;
-                max-height: 155px !important;
-                height: 155px !important;
+                max-height: 165px !important;
+                height: 165px !important;
                 -webkit-clip-path: inset(0 0 0 0 round 10px) !important;
                 clip-path: inset(0 0 0 0 round 10px) !important;
                 position: relative !important;
@@ -563,8 +569,8 @@
             }
 
             .image-placeholder img {
-                max-height: 155px !important;
-                height: 155px !important;
+                max-height: 165px !important;
+                height: 165px !important;
                 width: 100% !important;
                 object-fit: cover !important;
                 object-position: center !important;
@@ -856,12 +862,10 @@
             }
         }
 
-        // ===== ✅ حل مشكلة الصور على iPhone =====
-        // عند اللمس على أي منطقة في المربع، يُفتح منتقي الصور تلقائياً
+        // ===== حل مشكلة الصور على iPhone =====
         function triggerFile(id, event) {
             const input = document.getElementById(id);
             if (!input) return;
-            // منع التكرار إذا كان النقر على input نفسه
             if (event && event.target === input) return;
             input.click();
         }
@@ -871,7 +875,6 @@
             const file = event.target.files[0];
             if (!file) return;
             
-            // التحقق من أن الملف صورة
             if (!file.type.startsWith('image/')) {
                 alert('الرجاء اختيار ملف صورة صحيح');
                 return;
@@ -887,9 +890,8 @@
             reader.readAsDataURL(file);
         }
 
-        // ===== ✅ دالة الطباعة المحسّنة لـ iPhone =====
+        // ===== دالة الطباعة المحسّنة لـ iPhone =====
         function printFriendly() {
-            // التحقق من اسم مدير المدرسة
             const managerInput = document.getElementById('managerName');
             if (managerInput.value.trim() === '') {
                 alert('الرجاء إدخال اسم مدير المدرسة قبل الطباعة.');
@@ -897,20 +899,16 @@
                 return;
             }
             
-            // التحقق من وجود أجهزة iOS
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
             
             if (isIOS) {
-                // ✅ تصغير طفيف لضمان دخول كل المحتوى في صفحة واحدة على iPhone
                 document.documentElement.style.zoom = "98%";
                 document.body.style.zoom = "98%";
                 
-                // انتظار قصير ليُطبَّق الـ zoom قبل الطباعة
                 setTimeout(function() {
                     window.print();
                     
-                    // إعادة الحجم الطبيعي بعد الطباعة
                     setTimeout(function() {
                         document.documentElement.style.zoom = "100%";
                         document.body.style.zoom = "100%";
@@ -921,7 +919,6 @@
             }
         }
 
-        // ===== تحذير عند الطباعة بدون اسم مدير =====
         window.onbeforeprint = function() {
             const managerInput = document.getElementById('managerName');
             if (managerInput.value.trim() === '') {
