@@ -2,13 +2,14 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
     <title>نموذج نشاط مدرسي</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         @page {
-            size: A4;
+            size: A4 portrait;
             margin: 0;
         }
         
@@ -21,6 +22,7 @@
             justify-content: center;
             padding: 20px;
             -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .page-container {
@@ -49,7 +51,7 @@
             padding-top: 0;
         }
 
-        /* العنوان */
+        /* ===== العنوان ===== */
         .header {
             display: flex;
             justify-content: center;
@@ -92,7 +94,7 @@
             -webkit-appearance: none;
         }
 
-        /* الوصف */
+        /* ===== الوصف ===== */
         .description-box {
             border: 2px solid #2c5a9c;
             border-radius: 12px;
@@ -130,7 +132,7 @@
             -webkit-appearance: none;
         }
 
-        /* شبكة الصور */
+        /* ===== شبكة الصور ===== */
         .images-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -183,7 +185,7 @@
             display: none;
         }
 
-        /* ✅ input الملف يغطي الحاوية بالكامل ليعمل على iPhone */
+        /* ✅ input الملف يعمل على iPhone والأندرويد */
         .image-placeholder input[type="file"] {
             position: absolute;
             top: 0;
@@ -192,9 +194,10 @@
             height: 100%;
             opacity: 0;
             cursor: pointer;
-            z-index: 10;
+            z-index: 20;
             display: block;
             -webkit-appearance: none;
+            font-size: 0;
         }
 
         .placeholder-text {
@@ -205,7 +208,7 @@
             pointer-events: none;
         }
 
-        /* التذييل */
+        /* ===== التذييل ===== */
         .footer {
             margin-top: auto;
             padding-top: 8px;
@@ -295,7 +298,7 @@
             font-family: 'Tajawal', sans-serif;
         }
 
-        /* رائد النشاط */
+        /* ===== رائد النشاط ===== */
         .leader-section {
             display: flex;
             align-items: center;
@@ -324,7 +327,7 @@
             width: 220px;
         }
 
-        /* مدير المدرسة */
+        /* ===== مدير المدرسة ===== */
         .manager-section {
             display: flex;
             align-items: center;
@@ -394,7 +397,7 @@
             display: inline-block;
         }
 
-        /* زر الطباعة */
+        /* ===== زر الطباعة ===== */
         .print-btn-container {
             text-align: center;
             margin-top: 10px;
@@ -419,7 +422,7 @@
             background-color: #1e3f6d;
         }
 
-        /* شاشات الموبايل */
+        /* ===== شاشات الموبايل ===== */
         @media screen and (max-width: 820px) {
             body {
                 padding: 8px;
@@ -455,26 +458,34 @@
             }
         }
 
-        /* ===== إعدادات الطباعة ===== */
+        /* ============================================
+           إعدادات الطباعة - مُحسّنة لـ iPhone و iOS
+           ============================================ */
         @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+            
             html, body {
-                width: 210mm;
-                height: 297mm;
-                max-height: 297mm;
+                width: 210mm !important;
+                height: 290mm !important;
+                max-height: 290mm !important;
                 overflow: hidden !important;
                 margin: 0 !important;
                 padding: 0 !important;
                 background: #ffffff !important;
                 display: block !important;
+                -webkit-text-size-adjust: 100% !important;
             }
             
             .page-container {
                 width: 210mm !important;
-                height: 296mm !important;
-                max-height: 296mm !important;
+                height: 288mm !important;
+                max-height: 288mm !important;
                 min-height: 0 !important;
                 box-shadow: none !important;
-                padding: 8mm 10mm !important;
+                padding: 6mm 10mm !important;
                 margin: 0 !important;
                 border-radius: 0 !important;
                 -webkit-print-color-adjust: exact !important;
@@ -497,41 +508,63 @@
                 flex-direction: column !important;
             }
 
+            /* تصغير العنوان */
             .header {
-                margin-top: 20px !important;
-                margin-bottom: 8px !important;
+                margin-top: 15px !important;
+                margin-bottom: 6px !important;
             }
 
+            .title-row {
+                font-size: 14px !important;
+            }
+
+            .title-input {
+                font-size: 14px !important;
+            }
+
+            /* تصغير مربع الوصف */
             .description-box {
-                margin-top: 10px !important;
-                min-height: 100px !important;
-                margin-bottom: 8px !important;
+                margin-top: 8px !important;
+                min-height: 90px !important;
+                max-height: 100px !important;
+                margin-bottom: 6px !important;
+                padding: 8px !important;
             }
 
-            .description-input {
-                min-height: 70px !important;
+            .description-label {
                 font-size: 12px !important;
             }
 
+            .description-input {
+                min-height: 60px !important;
+                max-height: 75px !important;
+                font-size: 11px !important;
+                line-height: 1.4 !important;
+                overflow: hidden !important;
+                resize: none !important;
+            }
+
+            /* ✅ تصغير شبكة الصور لضمان الدخول في صفحة واحدة */
             .images-grid {
-                grid-template-rows: 180px 180px !important;
-                gap: 8px !important;
-                margin-bottom: 8px !important;
+                grid-template-rows: 155px 155px !important;
+                gap: 7px !important;
+                margin-bottom: 6px !important;
                 overflow: hidden !important;
             }
 
             .image-placeholder {
                 overflow: hidden !important;
-                max-height: 180px !important;
-                height: 180px !important;
-                -webkit-clip-path: inset(0 0 0 0 round 12px) !important;
-                clip-path: inset(0 0 0 0 round 12px) !important;
+                max-height: 155px !important;
+                height: 155px !important;
+                -webkit-clip-path: inset(0 0 0 0 round 10px) !important;
+                clip-path: inset(0 0 0 0 round 10px) !important;
                 position: relative !important;
+                border-width: 1.5px !important;
             }
 
             .image-placeholder img {
-                max-height: 180px !important;
-                height: 180px !important;
+                max-height: 155px !important;
+                height: 155px !important;
                 width: 100% !important;
                 object-fit: cover !important;
                 object-position: center !important;
@@ -539,6 +572,8 @@
                 top: 0 !important;
                 left: 0 !important;
                 display: block !important;
+                -webkit-backface-visibility: hidden !important;
+                backface-visibility: hidden !important;
             }
 
             .image-placeholder:not(.has-image) img {
@@ -549,6 +584,50 @@
                 display: none !important;
             }
 
+            .placeholder-text {
+                font-size: 10px !important;
+            }
+
+            /* تصغير التذييل */
+            .footer {
+                padding-top: 5px !important;
+                gap: 4px !important;
+                margin-top: auto !important;
+            }
+
+            .info-container {
+                padding: 5px 10px !important;
+                gap: 3px !important;
+                border-width: 1.5px !important;
+            }
+
+            .info-label,
+            .info-input {
+                font-size: 11px !important;
+            }
+
+            .info-row {
+                gap: 3px !important;
+            }
+
+            .leader-section {
+                margin-top: 4px !important;
+            }
+
+            .manager-section {
+                margin-top: 4px !important;
+            }
+
+            .manager-label,
+            .manager-input {
+                font-size: 12px !important;
+            }
+
+            .checkbox-container label {
+                font-size: 12px !important;
+            }
+
+            /* إخفاء عناصر التحكم */
             .print-btn-container {
                 display: none !important;
             }
@@ -565,29 +644,12 @@
                 display: flex !important;
             }
 
-            .footer {
-                padding-top: 6px !important;
-                gap: 5px !important;
-            }
-
-            .info-container {
-                padding: 6px 10px !important;
-                gap: 4px !important;
-            }
-
-            .leader-section {
-                margin-top: 5px !important;
-            }
-
-            .manager-section {
-                margin-top: 5px !important;
-            }
-
             .date-select,
             .date-input {
                 -webkit-appearance: none !important;
                 appearance: none !important;
                 background-image: none !important;
+                font-size: 11px !important;
             }
 
             .image-placeholder,
@@ -633,22 +695,22 @@
             </div>
 
             <div class="images-grid">
-                <div class="image-placeholder">
+                <div class="image-placeholder" onclick="triggerFile('img1', event)">
                     <input type="file" id="img1" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview1" src="" alt="صورة 1">
                     <div class="placeholder-text">اضغط لاختيار صورة 1</div>
                 </div>
-                <div class="image-placeholder">
+                <div class="image-placeholder" onclick="triggerFile('img2', event)">
                     <input type="file" id="img2" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview2" src="" alt="صورة 2">
                     <div class="placeholder-text">اضغط لاختيار صورة 2</div>
                 </div>
-                <div class="image-placeholder">
+                <div class="image-placeholder" onclick="triggerFile('img3', event)">
                     <input type="file" id="img3" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview3" src="" alt="صورة 3">
                     <div class="placeholder-text">اضغط لاختيار صورة 3</div>
                 </div>
-                <div class="image-placeholder">
+                <div class="image-placeholder" onclick="triggerFile('img4', event)">
                     <input type="file" id="img4" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview4" src="" alt="صورة 4">
                     <div class="placeholder-text">اضغط لاختيار صورة 4</div>
@@ -772,12 +834,13 @@
             </div>
 
             <div class="print-btn-container">
-                <button class="print-btn" onclick="window.print()">🖨️ طباعة</button>
+                <button class="print-btn" onclick="printFriendly()">🖨️ طباعة / حفظ PDF</button>
             </div>
         </div>
     </div>
 
     <script>
+        // ===== تفعيل رائد النشاط =====
         function toggleLeaderInput() {
             const checkbox = document.getElementById('leaderCheck');
             const leaderInput = document.getElementById('leaderName');
@@ -793,26 +856,76 @@
             }
         }
 
-        function loadImage(event, input) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const placeholder = input.closest('.image-placeholder');
-                    const img = placeholder.querySelector('img');
-                    img.src = e.target.result;
-                    placeholder.classList.add('has-image');
-                }
-                reader.readAsDataURL(file);
-            }
+        // ===== ✅ حل مشكلة الصور على iPhone =====
+        // عند اللمس على أي منطقة في المربع، يُفتح منتقي الصور تلقائياً
+        function triggerFile(id, event) {
+            const input = document.getElementById(id);
+            if (!input) return;
+            // منع التكرار إذا كان النقر على input نفسه
+            if (event && event.target === input) return;
+            input.click();
         }
 
-        window.onbeforeprint = function() {
+        // ===== تحميل الصورة وعرضها =====
+        function loadImage(event, input) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // التحقق من أن الملف صورة
+            if (!file.type.startsWith('image/')) {
+                alert('الرجاء اختيار ملف صورة صحيح');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const placeholder = input.closest('.image-placeholder');
+                const img = placeholder.querySelector('img');
+                img.src = e.target.result;
+                placeholder.classList.add('has-image');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ===== ✅ دالة الطباعة المحسّنة لـ iPhone =====
+        function printFriendly() {
+            // التحقق من اسم مدير المدرسة
             const managerInput = document.getElementById('managerName');
             if (managerInput.value.trim() === '') {
                 alert('الرجاء إدخال اسم مدير المدرسة قبل الطباعة.');
                 managerInput.focus();
-                return false;
+                return;
+            }
+            
+            // التحقق من وجود أجهزة iOS
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            
+            if (isIOS) {
+                // ✅ تصغير طفيف لضمان دخول كل المحتوى في صفحة واحدة على iPhone
+                document.documentElement.style.zoom = "98%";
+                document.body.style.zoom = "98%";
+                
+                // انتظار قصير ليُطبَّق الـ zoom قبل الطباعة
+                setTimeout(function() {
+                    window.print();
+                    
+                    // إعادة الحجم الطبيعي بعد الطباعة
+                    setTimeout(function() {
+                        document.documentElement.style.zoom = "100%";
+                        document.body.style.zoom = "100%";
+                    }, 1500);
+                }, 300);
+            } else {
+                window.print();
+            }
+        }
+
+        // ===== تحذير عند الطباعة بدون اسم مدير =====
+        window.onbeforeprint = function() {
+            const managerInput = document.getElementById('managerName');
+            if (managerInput.value.trim() === '') {
+                console.warn('تنبيه: اسم مدير المدرسة فارغ');
             }
         };
     </script>
