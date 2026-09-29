@@ -49,7 +49,7 @@
             padding-top: 20px;
         }
 
-        /* العنوان */
+        /* ===== العنوان ===== */
         .header { 
             display: flex; 
             justify-content: center; 
@@ -90,7 +90,7 @@
             text-align: right;
         }
 
-        /* الوصف */
+        /* ===== الوصف ===== */
         .description-box { 
             border: 2px solid #2c5a9c; 
             border-radius: 12px;
@@ -127,7 +127,7 @@
             text-align: right;
         }
 
-        /* شبكة الصور - ارتفاع ثابت لكل صف */
+        /* ===== شبكة الصور ===== */
         .images-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
@@ -155,6 +155,7 @@
             transition: all 0.3s ease; 
             height: 100%;
             width: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .image-placeholder:hover { 
@@ -184,11 +185,16 @@
 
         .image-placeholder input[type="file"] { 
             position: absolute; 
+            top: 0;
+            left: 0;
             width: 100%; 
             height: 100%; 
             opacity: 0; 
             cursor: pointer; 
-            z-index: 3; 
+            z-index: 20;
+            display: block;
+            -webkit-appearance: none;
+            font-size: 0;
         }
 
         .placeholder-text { 
@@ -196,9 +202,10 @@
             padding: 6px; 
             z-index: 2; 
             font-size: 11px;
+            pointer-events: none;
         }
 
-        /* التذييل */
+        /* ===== التذييل ===== */
         .footer { 
             margin-top: auto; 
             padding-top: 12px; 
@@ -208,7 +215,6 @@
             position: relative; 
         }
 
-        /* حاوية موحدة بإطار */
         .info-container {
             display: flex;
             flex-direction: column;
@@ -253,7 +259,6 @@
             text-align: right; 
         }
 
-        /* حقول التاريخ - قوائم منسدلة */
         .date-input { 
             width: 45px;
             border: none;
@@ -292,7 +297,6 @@
             font-family: 'Tajawal', sans-serif;
         }
 
-        /* رائد النشاط */
         .leader-section { 
             display: flex; 
             align-items: center; 
@@ -321,7 +325,6 @@
             width: 220px;
         }
 
-        /* مدير المدرسة */
         .manager-section { 
             display: flex; 
             align-items: center; 
@@ -390,7 +393,6 @@
             display: inline-block; 
         }
 
-        /* زر الطباعة */
         .print-btn-container { 
             text-align: center; 
             margin-top: 12px; 
@@ -415,11 +417,7 @@
             background-color: #1e3f6d; 
         }
 
-        /* ============================================
-           ✅ تعديل iPhone فقط - لا يؤثر على التصميم الأصلي
-           ============================================ */
-        
-        /* 1) تحسين ظهور المربعات على شاشة iPhone */
+        /* ===== شاشات الموبايل ===== */
         @media screen and (max-width: 820px) {
             body {
                 padding: 8px;
@@ -455,110 +453,79 @@
             }
         }
 
-        /* 2) تحسين الطباعة على iPhone فقط (Safari/iOS) */
-        @supports (-webkit-touch-callout: none) {
-            @media print {
-                .page-container {
-                    width: 210mm !important;
-                    height: 290mm !important;
-                    max-height: 290mm !important;
-                    padding: 8mm 10mm !important;
-                    overflow: hidden !important;
-                    page-break-after: avoid !important;
-                    page-break-inside: avoid !important;
-                }
-                
-                html, body {
-                    width: 210mm !important;
-                    height: 290mm !important;
-                    max-height: 290mm !important;
-                    overflow: hidden !important;
-                }
-
-                .description-box {
-                    margin-top: 20px !important;
-                    min-height: 120px !important;
-                }
-
-                .images-grid {
-                    grid-template-rows: 200px 200px !important;
-                }
-
-                .image-placeholder {
-                    max-height: 200px !important;
-                    height: 200px !important;
-                }
-
-                .image-placeholder img {
-                    max-height: 200px !important;
-                    height: 200px !important;
-                }
-            }
-        }
-
-        /* ===== إعدادات الطباعة الأصلية (للأندرويد والكمبيوتر) ===== */
+        /* ===== إعدادات الطباعة ===== */
         @media print {
-            body { 
-                background-color: #ffffff; 
-                padding: 0; 
-                margin: 0; 
-            }
-            
-            .page-container { 
-                width: 210mm; 
-                height: 295mm;
-                max-height: 295mm;
-                box-shadow: none; 
-                padding: 12mm !important;
+            html, body {
+                width: 210mm !important;
+                height: 290mm !important;
+                max-height: 290mm !important;
+                overflow: hidden !important;
                 margin: 0 !important;
-                border-radius: 0; 
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important; 
+                padding: 0 !important;
+                background: #ffffff !important;
+                display: block !important;
+            }
+            
+            .page-container {
+                width: 210mm !important;
+                height: 288mm !important;
+                max-height: 288mm !important;
+                box-shadow: none !important;
+                padding: 8mm 10mm !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
                 overflow: hidden !important;
-            }
-            
-            .print-btn-container { 
-                display: none !important; 
-            }
-            
-            .checkbox-container input[type="checkbox"] {
-                display: none !important;
-            }
-            
-            .leader-section:not(.active) {
-                display: none !important;
-            }
-            
-            .leader-section.active {
+                page-break-after: avoid !important;
+                page-break-inside: avoid !important;
+                break-after: avoid !important;
+                break-inside: avoid !important;
                 display: flex !important;
+                flex-direction: column !important;
             }
-            
-            .date-select,
-            .date-input {
-                -webkit-appearance: none !important;
-                -moz-appearance: none !important;
-                appearance: none !important;
-                background-image: none !important;
-                padding-right: 2px !important;
+
+            .content {
+                height: 100% !important;
+                max-height: 100% !important;
+                overflow: hidden !important;
+                padding-top: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
-            
+
+            .description-box {
+                margin-top: 20px !important;
+                min-height: 120px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .description-input {
+                min-height: 80px !important;
+                font-size: 12px !important;
+                overflow: hidden !important;
+                resize: none !important;
+            }
+
             .images-grid {
-                grid-template-rows: 220px 220px !important;
+                grid-template-rows: 200px 200px !important;
+                gap: 10px !important;
+                margin-bottom: 10px !important;
                 overflow: hidden !important;
             }
-            
+
             .image-placeholder {
                 overflow: hidden !important;
-                max-height: 220px !important;
-                height: 220px !important;
-                clip-path: inset(0 0 0 0 round 12px) !important;
+                max-height: 200px !important;
+                height: 200px !important;
                 -webkit-clip-path: inset(0 0 0 0 round 12px) !important;
+                clip-path: inset(0 0 0 0 round 12px) !important;
                 position: relative !important;
             }
-            
+
             .image-placeholder img {
-                max-height: 220px !important;
-                height: 220px !important;
+                max-height: 200px !important;
+                height: 200px !important;
                 width: 100% !important;
                 object-fit: cover !important;
                 object-position: center !important;
@@ -566,53 +533,62 @@
                 top: 0 !important;
                 left: 0 !important;
                 display: block !important;
+                -webkit-backface-visibility: hidden !important;
+                backface-visibility: hidden !important;
             }
-            
+
             .image-placeholder:not(.has-image) img {
                 display: none !important;
             }
-            
-            .image-placeholder, 
-            .description-box, 
-            .info-container { 
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important; 
-            }
-            
-            .image-placeholder input[type="file"] { 
-                display: none; 
-            }
-            
-            .title-input, .info-input, .date-input, .date-select, .manager-input { 
-                border: none !important;
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important; 
-            }
-            
-            * {
-                overflow: visible !important;
-                scrollbar-width: none !important;
-                -ms-overflow-style: none !important;
-            }
-            
-            *::-webkit-scrollbar {
+
+            .image-placeholder input[type="file"] {
                 display: none !important;
-                width: 0 !important;
-                height: 0 !important;
             }
-            
+
+            .print-btn-container {
+                display: none !important;
+            }
+
+            .checkbox-container input[type="checkbox"] {
+                display: none !important;
+            }
+
+            .leader-section:not(.active) {
+                display: none !important;
+            }
+
+            .leader-section.active {
+                display: flex !important;
+            }
+
+            .date-select,
+            .date-input {
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
+                background-image: none !important;
+            }
+
+            .image-placeholder,
+            .description-box,
+            .info-container {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .title-input,
+            .info-input,
+            .date-input,
+            .date-select,
+            .manager-input {
+                border: none !important;
+            }
+
             .description-box,
             .description-input,
             textarea {
-                overflow: visible !important;
-                height: auto !important;
-                max-height: none !important;
+                overflow: hidden !important;
                 resize: none !important;
-            }
-            
-            html, body {
-                overflow: visible !important;
-                height: auto !important;
             }
         }
     </style>
@@ -636,7 +612,6 @@
             </div>
 
             <div class="images-grid">
-                <!-- ✅ إضافة onclick احتياطي لـ iPhone -->
                 <div class="image-placeholder" onclick="triggerFile('img1', event)">
                     <input type="file" id="img1" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview1" src="" alt="صورة 1">
@@ -776,7 +751,6 @@
             </div>
 
             <div class="print-btn-container">
-                <!-- ✅ استخدام printFriendly() بدل window.print() -->
                 <button class="print-btn" onclick="printFriendly()">🖨️ طباعة</button>
             </div>
         </div>
@@ -798,7 +772,6 @@
             }
         }
 
-        /* ✅ دالة جديدة: حل مشكلة فتح الصور على iPhone */
         function triggerFile(id, event) {
             const input = document.getElementById(id);
             if (!input) return;
@@ -820,7 +793,6 @@
             }
         }
 
-        /* ✅ دالة طباعة مخصصة: تُصغّر الصفحة إلى 98% على iPhone فقط */
         function printFriendly() {
             const managerInput = document.getElementById('managerName');
             if (managerInput.value.trim() === '') {
@@ -829,26 +801,22 @@
                 return;
             }
             
-            // التحقق من أن الجهاز iPhone/iPad
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
             
             if (isIOS) {
-                // على iPhone: تصغير طفيف لضمان دخول كل المحتوى في صفحة واحدة
                 document.documentElement.style.zoom = "98%";
                 document.body.style.zoom = "98%";
                 
                 setTimeout(function() {
                     window.print();
                     
-                    // إعادة الحجم الطبيعي بعد الطباعة
                     setTimeout(function() {
                         document.documentElement.style.zoom = "100%";
                         document.body.style.zoom = "100%";
                     }, 1500);
                 }, 300);
             } else {
-                // على الكمبيوتر والأندرويد: الطباعة العادية (لا تغيير)
                 window.print();
             }
         }
