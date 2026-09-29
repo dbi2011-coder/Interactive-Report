@@ -416,7 +416,7 @@
         }
 
         /* =========================================================
-           ✅ إعدادات الطباعة فقط - تم التعديل لإصلاح iPhone
+           ✅ إعدادات الطباعة فقط - مُصحّحة
            ⚠️ العرض العادي للصفحة لم يتغير نهائياً
            ========================================================= */
         @media print {
@@ -460,49 +460,50 @@
                 flex-direction: column !important;
             }
 
-            /* ✅ 1) إضافة مساحة للشعار أعلى الصفحة */
+            /* ✅ لا مساحة إضافية - الشعار يظهر من الخلفية */
             .header {
-                margin-top: 60px !important;
-                margin-bottom: 10px !important;
+                margin-top: 0 !important;
+                margin-bottom: 5px !important;
             }
 
-            /* ✅ 2) مربع الوصف - إلغاء الهامش العلوي */
+            /* ✅ مربع الوصف مباشرة بعد العنوان */
             .description-box {
                 margin-top: 0 !important;
-                min-height: 125px !important;
-                max-height: 135px !important;
-                margin-bottom: 10px !important;
-                padding: 10px !important;
+                min-height: 100px !important;
+                max-height: 110px !important;
+                margin-bottom: 8px !important;
+                padding: 8px !important;
             }
 
             .description-input {
-                min-height: 80px !important;
-                max-height: 95px !important;
-                font-size: 12px !important;
+                min-height: 60px !important;
+                max-height: 75px !important;
+                font-size: 11px !important;
+                line-height: 1.4 !important;
                 overflow: hidden !important;
                 resize: none !important;
             }
 
-            /* ✅ 3) شبكة الصور - ارتفاع مناسب */
+            /* ✅ تصغير الصور - الحل الأساسي */
             .images-grid {
-                grid-template-rows: 205px 205px !important;
-                gap: 10px !important;
-                margin-bottom: 10px !important;
+                grid-template-rows: 170px 170px !important;
+                gap: 8px !important;
+                margin-bottom: 8px !important;
                 overflow: hidden !important;
             }
 
             .image-placeholder {
                 overflow: hidden !important;
-                max-height: 205px !important;
-                height: 205px !important;
+                max-height: 170px !important;
+                height: 170px !important;
                 -webkit-clip-path: inset(0 0 0 0 round 12px) !important;
                 clip-path: inset(0 0 0 0 round 12px) !important;
                 position: relative !important;
             }
 
             .image-placeholder img {
-                max-height: 205px !important;
-                height: 205px !important;
+                max-height: 170px !important;
+                height: 170px !important;
                 width: 100% !important;
                 object-fit: cover !important;
                 object-position: center !important;
@@ -730,7 +731,7 @@
             </div>
 
             <div class="print-btn-container">
-                <button class="print-btn" onclick="printFriendly()">🖨️ طباعة</button>
+                <button class="print-btn" onclick="window.print()">🖨️ طباعة</button>
             </div>
         </div>
     </div>
@@ -762,35 +763,6 @@
                     placeholder.classList.add('has-image');
                 }
                 reader.readAsDataURL(file);
-            }
-        }
-
-        /* ✅ دالة طباعة: تُصغّر إلى 98% على iPhone فقط لدخول كل المحتوى في صفحة A4 واحدة */
-        function printFriendly() {
-            const managerInput = document.getElementById('managerName');
-            if (managerInput.value.trim() === '') {
-                alert('الرجاء إدخال اسم مدير المدرسة قبل الطباعة.');
-                managerInput.focus();
-                return;
-            }
-            
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            
-            if (isIOS) {
-                document.documentElement.style.zoom = "98%";
-                document.body.style.zoom = "98%";
-                
-                setTimeout(function() {
-                    window.print();
-                    
-                    setTimeout(function() {
-                        document.documentElement.style.zoom = "100%";
-                        document.body.style.zoom = "100%";
-                    }, 1500);
-                }, 300);
-            } else {
-                window.print();
             }
         }
 
