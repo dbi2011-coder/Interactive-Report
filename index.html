@@ -416,7 +416,7 @@
         }
 
         /* =========================================================
-           ✅ إعدادات الطباعة فقط - مُحسّنة لتوزيع المساحة بشكل متوازن
+           ✅ إعدادات الطباعة فقط - مُصحّحة
            ⚠️ العرض العادي للصفحة لم يتغير نهائياً
            ========================================================= */
         @media print {
@@ -460,50 +460,50 @@
                 flex-direction: column !important;
             }
 
-            /* ✅ العنوان - مباشرة في الأعلى */
+            /* ✅ لا مساحة إضافية - الشعار يظهر من الخلفية */
             .header {
                 margin-top: 0 !important;
                 margin-bottom: 5px !important;
             }
 
-            /* ✅ مربع الوصف - ارتفاع مناسب */
+            /* ✅ مربع الوصف مباشرة بعد العنوان */
             .description-box {
                 margin-top: 0 !important;
-                min-height: 110px !important;
-                max-height: 120px !important;
-                margin-bottom: 10px !important;
-                padding: 10px !important;
+                min-height: 100px !important;
+                max-height: 110px !important;
+                margin-bottom: 8px !important;
+                padding: 8px !important;
             }
 
             .description-input {
-                min-height: 70px !important;
-                max-height: 85px !important;
-                font-size: 12px !important;
-                line-height: 1.5 !important;
+                min-height: 60px !important;
+                max-height: 75px !important;
+                font-size: 11px !important;
+                line-height: 1.4 !important;
                 overflow: hidden !important;
                 resize: none !important;
             }
 
-            /* ✅ الصور - ارتفاع مُحسّن لاستغلال المساحة */
+            /* ✅ تصغير الصور - الحل الأساسي */
             .images-grid {
-                grid-template-rows: 180px 180px !important;
-                gap: 10px !important;
-                margin-bottom: 12px !important;
+                grid-template-rows: 170px 170px !important;
+                gap: 8px !important;
+                margin-bottom: 8px !important;
                 overflow: hidden !important;
             }
 
             .image-placeholder {
                 overflow: hidden !important;
-                max-height: 180px !important;
-                height: 180px !important;
+                max-height: 170px !important;
+                height: 170px !important;
                 -webkit-clip-path: inset(0 0 0 0 round 12px) !important;
                 clip-path: inset(0 0 0 0 round 12px) !important;
                 position: relative !important;
             }
 
             .image-placeholder img {
-                max-height: 180px !important;
-                height: 180px !important;
+                max-height: 170px !important;
+                height: 170px !important;
                 width: 100% !important;
                 object-fit: cover !important;
                 object-position: center !important;
@@ -517,26 +517,6 @@
 
             .image-placeholder:not(.has-image) img {
                 display: none !important;
-            }
-
-            /* ✅ التذييل - استغلال الفراغ في الأسفل */
-            .footer {
-                margin-top: auto !important;
-                padding-top: 20px !important;
-                gap: 10px !important;
-            }
-
-            .info-container {
-                padding: 10px 14px !important;
-                gap: 6px !important;
-            }
-
-            .leader-section {
-                margin-top: 10px !important;
-            }
-
-            .manager-section {
-                margin-top: 10px !important;
             }
 
             /* ===== إخفاء عناصر التحكم ===== */
