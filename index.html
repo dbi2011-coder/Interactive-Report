@@ -51,8 +51,6 @@
             padding-top: 0;
         }
 
-        /* ===== العنوان ===== */
-        /* ✅ مساحة كبيرة أعلى الصفحة للشعار */
         .header {
             display: flex;
             justify-content: center;
@@ -95,7 +93,6 @@
             -webkit-appearance: none;
         }
 
-        /* ===== الوصف ===== */
         .description-box {
             border: 2px solid #2c5a9c;
             border-radius: 12px;
@@ -133,7 +130,6 @@
             -webkit-appearance: none;
         }
 
-        /* ===== شبكة الصور ===== */
         .images-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -186,7 +182,6 @@
             display: none;
         }
 
-        /* ✅ input الملف يعمل على iPhone */
         .image-placeholder input[type="file"] {
             position: absolute;
             top: 0;
@@ -209,7 +204,6 @@
             pointer-events: none;
         }
 
-        /* ===== التذييل ===== */
         .footer {
             margin-top: auto;
             padding-top: 8px;
@@ -299,7 +293,6 @@
             font-family: 'Tajawal', sans-serif;
         }
 
-        /* ===== رائد النشاط ===== */
         .leader-section {
             display: flex;
             align-items: center;
@@ -328,7 +321,6 @@
             width: 220px;
         }
 
-        /* ===== مدير المدرسة ===== */
         .manager-section {
             display: flex;
             align-items: center;
@@ -398,7 +390,6 @@
             display: inline-block;
         }
 
-        /* ===== زر الطباعة ===== */
         .print-btn-container {
             text-align: center;
             margin-top: 10px;
@@ -423,7 +414,6 @@
             background-color: #1e3f6d;
         }
 
-        /* ===== شاشات الموبايل ===== */
         @media screen and (max-width: 820px) {
             body {
                 padding: 8px;
@@ -444,7 +434,6 @@
                 width: 100%;
             }
 
-            /* ✅ مساحة أقل للشعار على الموبايل */
             .header {
                 margin-top: 80px;
             }
@@ -464,9 +453,6 @@
             }
         }
 
-        /* ============================================
-           إعدادات الطباعة - مُحسّنة لـ iPhone و iOS
-           ============================================ */
         @media print {
             @page {
                 size: A4 portrait;
@@ -514,7 +500,6 @@
                 flex-direction: column !important;
             }
 
-            /* ✅ مساحة كبيرة أعلى الصفحة للشعار */
             .header {
                 margin-top: 90px !important;
                 margin-bottom: 10px !important;
@@ -528,7 +513,6 @@
                 font-size: 14px !important;
             }
 
-            /* ✅ تصغير مربع الوصف */
             .description-box {
                 margin-top: 0 !important;
                 min-height: 100px !important;
@@ -550,7 +534,6 @@
                 resize: none !important;
             }
 
-            /* ✅ ارتفاع متوازن للصور */
             .images-grid {
                 grid-template-rows: 165px 165px !important;
                 gap: 8px !important;
@@ -594,7 +577,6 @@
                 font-size: 10px !important;
             }
 
-            /* تصغير التذييل */
             .footer {
                 padding-top: 5px !important;
                 gap: 4px !important;
@@ -633,7 +615,6 @@
                 font-size: 12px !important;
             }
 
-            /* إخفاء عناصر التحكم */
             .print-btn-container {
                 display: none !important;
             }
@@ -846,7 +827,6 @@
     </div>
 
     <script>
-        // ===== تفعيل رائد النشاط =====
         function toggleLeaderInput() {
             const checkbox = document.getElementById('leaderCheck');
             const leaderInput = document.getElementById('leaderName');
@@ -862,7 +842,6 @@
             }
         }
 
-        // ===== حل مشكلة الصور على iPhone =====
         function triggerFile(id, event) {
             const input = document.getElementById(id);
             if (!input) return;
@@ -870,7 +849,6 @@
             input.click();
         }
 
-        // ===== تحميل الصورة وعرضها =====
         function loadImage(event, input) {
             const file = event.target.files[0];
             if (!file) return;
@@ -890,7 +868,6 @@
             reader.readAsDataURL(file);
         }
 
-        // ===== دالة الطباعة المحسّنة لـ iPhone =====
         function printFriendly() {
             const managerInput = document.getElementById('managerName');
             if (managerInput.value.trim() === '') {
