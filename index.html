@@ -49,7 +49,7 @@
             padding-top: 20px;
         }
 
-        /* ===== العنوان ===== */
+        /* العنوان */
         .header { 
             display: flex; 
             justify-content: center; 
@@ -90,7 +90,7 @@
             text-align: right;
         }
 
-        /* ===== الوصف ===== */
+        /* الوصف */
         .description-box { 
             border: 2px solid #2c5a9c; 
             border-radius: 12px;
@@ -127,7 +127,7 @@
             text-align: right;
         }
 
-        /* ===== شبكة الصور ===== */
+        /* شبكة الصور - ارتفاع ثابت لكل صف */
         .images-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
@@ -155,7 +155,6 @@
             transition: all 0.3s ease; 
             height: 100%;
             width: 100%;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .image-placeholder:hover { 
@@ -185,16 +184,11 @@
 
         .image-placeholder input[type="file"] { 
             position: absolute; 
-            top: 0;
-            left: 0;
             width: 100%; 
             height: 100%; 
             opacity: 0; 
             cursor: pointer; 
-            z-index: 20;
-            display: block;
-            -webkit-appearance: none;
-            font-size: 0;
+            z-index: 3; 
         }
 
         .placeholder-text { 
@@ -202,10 +196,9 @@
             padding: 6px; 
             z-index: 2; 
             font-size: 11px;
-            pointer-events: none;
         }
 
-        /* ===== التذييل ===== */
+        /* التذييل */
         .footer { 
             margin-top: auto; 
             padding-top: 12px; 
@@ -215,6 +208,7 @@
             position: relative; 
         }
 
+        /* حاوية موحدة بإطار */
         .info-container {
             display: flex;
             flex-direction: column;
@@ -259,6 +253,7 @@
             text-align: right; 
         }
 
+        /* حقول التاريخ - قوائم منسدلة */
         .date-input { 
             width: 45px;
             border: none;
@@ -297,6 +292,7 @@
             font-family: 'Tajawal', sans-serif;
         }
 
+        /* رائد النشاط */
         .leader-section { 
             display: flex; 
             align-items: center; 
@@ -325,6 +321,7 @@
             width: 220px;
         }
 
+        /* مدير المدرسة */
         .manager-section { 
             display: flex; 
             align-items: center; 
@@ -393,6 +390,7 @@
             display: inline-block; 
         }
 
+        /* زر الطباعة */
         .print-btn-container { 
             text-align: center; 
             margin-top: 12px; 
@@ -417,44 +415,12 @@
             background-color: #1e3f6d; 
         }
 
-        /* ===== شاشات الموبايل ===== */
-        @media screen and (max-width: 820px) {
-            body {
-                padding: 8px;
-                display: block;
-            }
-            
-            .page-container {
-                width: 100%;
-                height: auto;
-                min-height: 100vh;
-                padding: 10px;
-                background-size: cover;
-            }
-
-            .title-area,
-            .description-box,
-            .images-grid {
-                width: 100%;
-            }
-
-            .description-box {
-                margin-top: 20px;
-            }
-
-            .images-grid {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 160px 160px;
-            }
-
-            .info-container {
-                width: 100%;
-                align-self: stretch;
-            }
-        }
-
-        /* ===== إعدادات الطباعة ===== */
+        /* =========================================================
+           ✅ إعدادات الطباعة فقط - تم التعديل لإصلاح iPhone
+           ⚠️ العرض العادي للصفحة لم يتغير نهائياً
+           ========================================================= */
         @media print {
+            /* ===== إعدادات عامة للصفحة ===== */
             html, body {
                 width: 210mm !important;
                 height: 290mm !important;
@@ -471,7 +437,7 @@
                 height: 288mm !important;
                 max-height: 288mm !important;
                 box-shadow: none !important;
-                padding: 8mm 10mm !important;
+                padding: 6mm 10mm !important;
                 margin: 0 !important;
                 border-radius: 0 !important;
                 -webkit-print-color-adjust: exact !important;
@@ -494,21 +460,32 @@
                 flex-direction: column !important;
             }
 
-            .description-box {
-                margin-top: 20px !important;
-                min-height: 120px !important;
+            /* ✅ 1) إضافة مساحة للشعار أعلى الصفحة */
+            .header {
+                margin-top: 60px !important;
                 margin-bottom: 10px !important;
+            }
+
+            /* ✅ 2) مربع الوصف - إلغاء الهامش العلوي */
+            .description-box {
+                margin-top: 0 !important;
+                min-height: 125px !important;
+                max-height: 135px !important;
+                margin-bottom: 10px !important;
+                padding: 10px !important;
             }
 
             .description-input {
                 min-height: 80px !important;
+                max-height: 95px !important;
                 font-size: 12px !important;
                 overflow: hidden !important;
                 resize: none !important;
             }
 
+            /* ✅ 3) شبكة الصور - ارتفاع مناسب */
             .images-grid {
-                grid-template-rows: 200px 200px !important;
+                grid-template-rows: 205px 205px !important;
                 gap: 10px !important;
                 margin-bottom: 10px !important;
                 overflow: hidden !important;
@@ -516,16 +493,16 @@
 
             .image-placeholder {
                 overflow: hidden !important;
-                max-height: 200px !important;
-                height: 200px !important;
+                max-height: 205px !important;
+                height: 205px !important;
                 -webkit-clip-path: inset(0 0 0 0 round 12px) !important;
                 clip-path: inset(0 0 0 0 round 12px) !important;
                 position: relative !important;
             }
 
             .image-placeholder img {
-                max-height: 200px !important;
-                height: 200px !important;
+                max-height: 205px !important;
+                height: 205px !important;
                 width: 100% !important;
                 object-fit: cover !important;
                 object-position: center !important;
@@ -541,49 +518,51 @@
                 display: none !important;
             }
 
-            .image-placeholder input[type="file"] {
-                display: none !important;
+            /* ===== إخفاء عناصر التحكم ===== */
+            .print-btn-container { 
+                display: none !important; 
             }
-
-            .print-btn-container {
-                display: none !important;
-            }
-
+            
             .checkbox-container input[type="checkbox"] {
                 display: none !important;
             }
-
+            
             .leader-section:not(.active) {
                 display: none !important;
             }
-
+            
             .leader-section.active {
                 display: flex !important;
             }
 
+            .image-placeholder input[type="file"] { 
+                display: none !important; 
+            }
+
+            /* ===== إزالة أسهم القوائم ===== */
             .date-select,
             .date-input {
                 -webkit-appearance: none !important;
                 -moz-appearance: none !important;
                 appearance: none !important;
                 background-image: none !important;
+                padding-right: 2px !important;
             }
 
-            .image-placeholder,
-            .description-box,
-            .info-container {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+            /* ===== ضمان طباعة الخلفيات ===== */
+            .image-placeholder, 
+            .description-box, 
+            .info-container { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
             }
 
-            .title-input,
-            .info-input,
-            .date-input,
-            .date-select,
-            .manager-input {
+            .title-input, .info-input, .date-input, .date-select, .manager-input { 
                 border: none !important;
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
             }
-
+            
             .description-box,
             .description-input,
             textarea {
@@ -612,22 +591,22 @@
             </div>
 
             <div class="images-grid">
-                <div class="image-placeholder" onclick="triggerFile('img1', event)">
+                <div class="image-placeholder" onclick="document.getElementById('img1').click()">
                     <input type="file" id="img1" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview1" src="" alt="صورة 1">
                     <div class="placeholder-text">اضغط لاختيار صورة 1</div>
                 </div>
-                <div class="image-placeholder" onclick="triggerFile('img2', event)">
+                <div class="image-placeholder" onclick="document.getElementById('img2').click()">
                     <input type="file" id="img2" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview2" src="" alt="صورة 2">
                     <div class="placeholder-text">اضغط لاختيار صورة 2</div>
                 </div>
-                <div class="image-placeholder" onclick="triggerFile('img3', event)">
+                <div class="image-placeholder" onclick="document.getElementById('img3').click()">
                     <input type="file" id="img3" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview3" src="" alt="صورة 3">
                     <div class="placeholder-text">اضغط لاختيار صورة 3</div>
                 </div>
-                <div class="image-placeholder" onclick="triggerFile('img4', event)">
+                <div class="image-placeholder" onclick="document.getElementById('img4').click()">
                     <input type="file" id="img4" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview4" src="" alt="صورة 4">
                     <div class="placeholder-text">اضغط لاختيار صورة 4</div>
@@ -772,13 +751,6 @@
             }
         }
 
-        function triggerFile(id, event) {
-            const input = document.getElementById(id);
-            if (!input) return;
-            if (event && event.target === input) return;
-            input.click();
-        }
-
         function loadImage(event, input) {
             const file = event.target.files[0];
             if (file) {
@@ -793,6 +765,7 @@
             }
         }
 
+        /* ✅ دالة طباعة: تُصغّر إلى 98% على iPhone فقط لدخول كل المحتوى في صفحة A4 واحدة */
         function printFriendly() {
             const managerInput = document.getElementById('managerName');
             if (managerInput.value.trim() === '') {
