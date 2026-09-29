@@ -415,78 +415,7 @@
             background-color: #1e3f6d; 
         }
 
-        /* =========================================================
-           ✅ إصلاح iPhone فقط - يستخدم @supports لتحديد iOS تلقائياً
-           ⚠️ لا يؤثر على Chrome / Android / Firefox / Edge نهائياً
-           ========================================================= */
-        @supports (-webkit-touch-callout: none) {
-            /* على iPhone/iPad فقط: تصغير هوامش الطباعة أكثر لمنع الانقسام */
-            @media print {
-                @page {
-                    size: A4 portrait;
-                    margin: 0;
-                }
-
-                html, body {
-                    width: 210mm !important;
-                    height: 285mm !important;
-                    max-height: 285mm !important;
-                    overflow: hidden !important;
-                    margin: 0 !important;
-                    padding: 0 !important;
-                }
-
-                .page-container {
-                    width: 210mm !important;
-                    height: 283mm !important;
-                    max-height: 283mm !important;
-                    padding: 6mm 10mm !important;
-                    overflow: hidden !important;
-                    page-break-after: avoid !important;
-                    page-break-inside: avoid !important;
-                    break-after: avoid !important;
-                    break-inside: avoid !important;
-                }
-
-                .content {
-                    height: 100% !important;
-                    max-height: 100% !important;
-                    overflow: hidden !important;
-                    padding-top: 0 !important;
-                }
-
-                /* تصغير مربع الوصف قليلاً على iPhone */
-                .description-box {
-                    min-height: 110px !important;
-                    max-height: 120px !important;
-                    margin-top: 30px !important;
-                }
-
-                .description-input {
-                    min-height: 70px !important;
-                    max-height: 85px !important;
-                    overflow: hidden !important;
-                }
-
-                /* تصغير الصور على iPhone قليلاً */
-                .images-grid {
-                    grid-template-rows: 180px 180px !important;
-                    gap: 8px !important;
-                }
-
-                .image-placeholder {
-                    max-height: 180px !important;
-                    height: 180px !important;
-                }
-
-                .image-placeholder img {
-                    max-height: 180px !important;
-                    height: 180px !important;
-                }
-            }
-        }
-
-        /* ===== إعدادات الطباعة الأصلية (للأندرويد والكمبيوتر) ===== */
+        /* ===== إعدادات الطباعة ===== */
         @media print {
             body { 
                 background-color: #ffffff; 
@@ -532,6 +461,7 @@
                 padding-right: 2px !important;
             }
             
+            /* ===== الحل الجذري لمشكلة الصور ===== */
             .images-grid {
                 grid-template-rows: 220px 220px !important;
                 overflow: hidden !important;
@@ -626,22 +556,22 @@
             </div>
 
             <div class="images-grid">
-                <div class="image-placeholder" onclick="triggerFile('img1', event)">
+                <div class="image-placeholder" onclick="document.getElementById('img1').click()">
                     <input type="file" id="img1" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview1" src="" alt="صورة 1">
                     <div class="placeholder-text">اضغط لاختيار صورة 1</div>
                 </div>
-                <div class="image-placeholder" onclick="triggerFile('img2', event)">
+                <div class="image-placeholder" onclick="document.getElementById('img2').click()">
                     <input type="file" id="img2" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview2" src="" alt="صورة 2">
                     <div class="placeholder-text">اضغط لاختيار صورة 2</div>
                 </div>
-                <div class="image-placeholder" onclick="triggerFile('img3', event)">
+                <div class="image-placeholder" onclick="document.getElementById('img3').click()">
                     <input type="file" id="img3" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview3" src="" alt="صورة 3">
                     <div class="placeholder-text">اضغط لاختيار صورة 3</div>
                 </div>
-                <div class="image-placeholder" onclick="triggerFile('img4', event)">
+                <div class="image-placeholder" onclick="document.getElementById('img4').click()">
                     <input type="file" id="img4" accept="image/*" onchange="loadImage(event, this)">
                     <img id="preview4" src="" alt="صورة 4">
                     <div class="placeholder-text">اضغط لاختيار صورة 4</div>
@@ -765,7 +695,7 @@
             </div>
 
             <div class="print-btn-container">
-                <button class="print-btn" onclick="printFriendly()">🖨️ طباعة</button>
+                <button class="print-btn" onclick="window.print()">🖨️ طباعة</button>
             </div>
         </div>
     </div>
@@ -786,14 +716,6 @@
             }
         }
 
-        /* ✅ حل مشكلة فتح الصور على iPhone */
-        function triggerFile(id, event) {
-            const input = document.getElementById(id);
-            if (!input) return;
-            if (event && event.target === input) return;
-            input.click();
-        }
-
         function loadImage(event, input) {
             const file = event.target.files[0];
             if (file) {
@@ -805,35 +727,6 @@
                     placeholder.classList.add('has-image');
                 }
                 reader.readAsDataURL(file);
-            }
-        }
-
-        /* ✅ حل انقسام الصفحة على iPhone: تصغير 98% مؤقتاً أثناء الطباعة */
-        function printFriendly() {
-            const managerInput = document.getElementById('managerName');
-            if (managerInput.value.trim() === '') {
-                alert('الرجاء إدخال اسم مدير المدرسة قبل الطباعة.');
-                managerInput.focus();
-                return;
-            }
-            
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            
-            if (isIOS) {
-                document.documentElement.style.zoom = "98%";
-                document.body.style.zoom = "98%";
-                
-                setTimeout(function() {
-                    window.print();
-                    
-                    setTimeout(function() {
-                        document.documentElement.style.zoom = "100%";
-                        document.body.style.zoom = "100%";
-                    }, 1500);
-                }, 300);
-            } else {
-                window.print();
             }
         }
 
